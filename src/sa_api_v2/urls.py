@@ -103,6 +103,8 @@ urlpatterns = patterns('sa_api_v2',
     url(r'^utils/session-key', views.SessionKeyView.as_view(), name='session-key'),
     url(r'^utils/noop/?$', lambda request: HttpResponse(''), name='noop-route'),
 
+    url(r'^utils/bulk-upload', views.bulk),
+ 
 )
 
 #places_base_regex = r'^(?P<dataset__owner__username>[^/]+)/datasets/(?P<dataset__slug>[^/]+)/places/'
