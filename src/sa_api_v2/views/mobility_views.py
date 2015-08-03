@@ -59,9 +59,11 @@ logger = logging.getLogger('sa_api_v2.views')
 def bulk(request="none"):
 	place = models.core.Place()
 	place.dataset_id = '1'
+	place.submitter_id = '1'
 	my_lat = '33.755787'
 	my_long = '-116.359998'
 	place.geometry = fromstr('POINT(' + my_long + ' ' + my_lat + ')')
+	place.data = '{"private-submitter_email":"test","name":"test","user_token":"session:842e0c2fb637edb9787cb0678a16016d","hint_category":"improvement","location":{"sideOfStreet":"N","linkId":"0","mapUrl":"http:\/\/open.mapquestapi.com\/staticmap\/v4\/getmap?key=Fmjtd|luur2g0bnl,25=o5-9at29u&type=map&size=225,160&pois=purple-1,37.3440744,-121.8864022,0,0,|&center=37.3440744,-121.8864022&zoom=15&rand=860370430","displayLatLng":{"lat":37.344074,"lng":-121.886402},"adminArea6Type":"Neighborhood","adminArea3Type":"State","dragPoint":false,"geocodeQualityCode":"B1AAA","adminArea1":"US","geocodeQuality":"STREET","adminArea3":"CA","adminArea4":"Santa Clara County","adminArea5":"San Jos\u00e9","adminArea6":"","postalCode":"95112","type":"s","adminArea1Type":"Country","adminArea5Type":"City","latLng":{"lat":37.344074,"lng":-121.886402},"adminArea4Type":"County","unknownInput":"","street":"North 8th Street"},"submitter_name":"test","location_type":"side_walk","description":"test"}';
 	place.save()
 
 	return HttpResponse("Hello, world. You're at the polls index.")
