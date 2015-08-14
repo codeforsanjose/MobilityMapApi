@@ -75,7 +75,7 @@ def bulk(request="none"):
 		place.geometry = fromstr('POINT(' + item['coordinates'][0]['longitude'] + ' ' + item['coordinates'][0]['latitude'] + ')')
 
 		shareabouts['name'] = item['Project_Name']
-		shareabouts['description'] = item['Project_Id']
+		shareabouts['description'] = 'http://www.vta.org/transparency/capital-program-dashboard/Project-Scope?projectId=' + item['Project_Id']
 		shareabouts['location']['displayLatLng']['lat'] = float(item['coordinates'][0]['latitude'])
 		shareabouts['location']['displayLatLng']['lng'] = float(item['coordinates'][0]['longitude'])
 		shareabouts['location']['latLng']['lat'] = float(item['coordinates'][0]['latitude'])
