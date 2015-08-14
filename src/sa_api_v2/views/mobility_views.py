@@ -72,12 +72,18 @@ def bulk(request="none"):
 		place.submitter_id = '1'
 
 		# Put in data
-		place.geometry = fromstr('POINT(' + item['coordinates'][0]['latitude'] + ' ' + item['coordinates'][0]['longitude'] + ')')
+		place.geometry = fromstr('POINT(' + item['coordinates'][0]['longitude'] + ' ' + item['coordinates'][0]['latitude'] + ')')
 
 		shareabouts['name'] = item['Project_Name']
 		shareabouts['description'] = item['Project_Id']
-		place.data = json.dumps(shareabouts)
+		shareabouts['location']['displayLatLng']['lat'] = float(item['coordinates'][0]['latitude'])
+		shareabouts['location']['displayLatLng']['lng'] = float(item['coordinates'][0]['longitude'])
+		shareabouts['location']['latLng']['lat'] = float(item['coordinates'][0]['latitude'])
+		shareabouts['location']['latLng']['lng'] = float(item['coordinates'][0]['longitude'])
 
+
+		place.data = json.dumps(shareabouts)
+		
 		# print item['coordinates']
 		place.save()
 
