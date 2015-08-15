@@ -74,17 +74,24 @@ def bulk(request="none"):
 		# Put in data
 		place.geometry = fromstr('POINT(' + item['coordinates'][0]['longitude'] + ' ' + item['coordinates'][0]['latitude'] + ')')
 
+		# name and descritpion 
 		shareabouts['name'] = item['Project_Name']
-		shareabouts['description'] = 'http://www.vta.org/transparency/capital-program-dashboard/Project-Scope?projectId=' + item['Project_Id']
+		shareabouts['description'] = '<a href="http://www.vta.org/transparency/capital-program-dashboard/Project-Scope?projectId=' + item['Project_Id'] + '">View more details on VTA website</a>'
+
+		# location in JSON object
 		shareabouts['location']['displayLatLng']['lat'] = float(item['coordinates'][0]['latitude'])
 		shareabouts['location']['displayLatLng']['lng'] = float(item['coordinates'][0]['longitude'])
 		shareabouts['location']['latLng']['lat'] = float(item['coordinates'][0]['latitude'])
 		shareabouts['location']['latLng']['lng'] = float(item['coordinates'][0]['longitude'])
 
+		# modify the hint
+		shareabouts['hint_category'] = 'construction'
+		shareabouts['location_type'] = 'street'
+		shareabouts['submitter_name'] = 'VTA'
 
 		place.data = json.dumps(shareabouts)
-		
+
 		# print item['coordinates']
 		place.save()
-
+		
 	return HttpResponse('All set!')
